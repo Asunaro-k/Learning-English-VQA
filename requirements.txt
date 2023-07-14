@@ -1,0 +1,6 @@
+streamlit
+transformers
+opencv-python
+torch
+torchvision
+nltk
