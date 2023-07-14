@@ -21,24 +21,29 @@ from transformers import ViltProcessor, ViltForQuestionAnswering
 
 #1回だけ呼び出すもの
 def load_image_captioner():
-    return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
+    image_encoder_model = "google/vit-base-patch16-224-in21k"
+    text_decode_model = "gpt2"
+
+    model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(image_encoder_model, text_decode_model)
+    #return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
+    return pipeline("image-to-text", model)
 
 def load_model():
-    model_folder = './model/vqg_model1/'  # モデルが保存されているフォルダのパス
+    #model_folder = './model/vqg_model1/'  # モデルが保存されているフォルダのパス
 
     # モデルを読み込む
-    model = ProphetNetForConditionalGeneration.from_pretrained(model_folder)
-    tokenizer = ProphetNetTokenizer.from_pretrained(model_folder)
+    model = ProphetNetForConditionalGeneration.from_pretrained('microsoft/prophetnet-large-uncased-squad-qg')
+    tokenizer = ProphetNetTokenizer.from_pretrained('microsoft/prophetnet-large-uncased-squad-qg')
 
     return model, tokenizer
 
 # モデルの読み込みを行う関数
 def load_vilt_model():
-    model_folder1 = './model/vqa_model/'  # モデルが保存されているフォルダのパス
+    #model_folder1 = './model/vqa_model/'  # モデルが保存されているフォルダのパス
 
     # モデルを読み込む
-    processor = ViltProcessor.from_pretrained(model_folder1)
-    model = ViltForQuestionAnswering.from_pretrained(model_folder1)
+    processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
+    model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 
     return processor, model
  
