@@ -20,12 +20,7 @@ from transformers import ViltProcessor, ViltForQuestionAnswering
 
 #1回だけ呼び出すもの
 def load_image_captioner():
-    image_encoder_model = "google/vit-base-patch16-224-in21k"
-    text_decode_model = "gpt2"
-
-    model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(image_encoder_model, text_decode_model)
-    #return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
-    return pipeline("image-to-text", model)
+    return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
 
 def load_model():
     #model_folder = './model/vqg_model1/'  # モデルが保存されているフォルダのパス
