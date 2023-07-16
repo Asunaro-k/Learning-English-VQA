@@ -20,7 +20,8 @@ from transformers import ViltProcessor, ViltForQuestionAnswering
 
 #1回だけ呼び出すもの
 def load_image_captioner():
-    return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
+    return pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
+    #return pipeline("image-to-text", model="./image-captioning-output/lastcheckpoint/")
 
 def load_model():
     #model_folder = './model/vqg_model1/'  # モデルが保存されているフォルダのパス
